@@ -1,5 +1,4 @@
-console.log("script.js connected!");
-
+console.log("script.js connected");
 
 let buttons = document.querySelectorAll("#questions button");
 
@@ -81,7 +80,15 @@ buttons.forEach(function(button){
             resultsCounter += 2
         };
 
-        console.log(resultsCounter);
+        let finalMessage = ""
+
+        if (resultsCounter <= 4) {
+            finalMessage = "You're Glacier National Park!";
+        } else if (resultsCounter >= 5 || resultsCounter <=6) {
+            finalMessage = "You're Olympic National Park!";
+        } else if (resultsCounter >= 7) {
+            finalMessage = "You're Badlands National Park!";
+        };
         
     });
 });
@@ -89,30 +96,20 @@ buttons.forEach(function(button){
 
 function displayResults() {
     let finalButton = document.getElementById('show-result');
-
     if (finalButton) {
         finalButton.addEventListener('click', function() {
-            console.log("Button clicked!")
+            function updateDivtext() {
+                const div = document.getElementById("result-container");
+                div.textContent = finalMessage;
+            }
+            updateDivtext();
         })
-    }
-    if (resultsCounter <=4) {
-        let finalOutput = "You're Glacier National Park!";
-        const div = document.getElementById("result-text").innerHTML;
-        div.textContent = finalOutput;
-        return div.textContent;
-    } else if (resultsCounter >= 5 || resultsCounter <= 7) {
-        let finalOutput = "You're Olympic National Park!";
-        const div = document.getElementById("result-text").innerHTML;
-        div.textContent = finalOutput;
-        return div.textContent;
-    } else if (resultsCounter >= 8) {
-        let finalOutput = "You're Badlands National Park!";
-        const div = document.getElementById("result-text").innerHTML;
-        div.textContent = finalOutput;
-        return div.textContent;
     }
 };
 
 displayResults();
+
+// I tried for several days to fix this problem, and the only thing I cannot fix is to get the final result to appear in the text box.
+// I will gladly accept any removed points for not completing this part but I was wondering if I could also have an explanation for what I did wrong, thank you!
 
 
