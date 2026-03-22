@@ -19,10 +19,6 @@ buttons.forEach(function(button){
             output.textContent = "Question 1 Answer: A";
         } else if (answer === "B1") {
             output.textContent = "Question 1 Answer: B";
-        } else if (answer === "C1") {
-            output.textContent = "Question 1 Answer: C";
-        } else if (answer === "D1") {
-            output.textContent = "Question 1 Answer: D";
         };
         
         
@@ -32,10 +28,6 @@ buttons.forEach(function(button){
             output2.textContent = "Question 2 Answer: A";
         } else if (answer === "B2") {
             output2.textContent = "Question 2 Answer: B";
-        } else if (answer === "C2") {
-            output2.textContent = "Question 2 Answer: C";
-        } else if (answer === "D2") {
-            output2.textContent = "Question 2 Answer: D";
         };
 
 
@@ -45,10 +37,6 @@ buttons.forEach(function(button){
             output3.textContent = "Question 3 Answer: A";
         } else if (answer === "B3") {
             output3.textContent = "Question 3 Answer: B";
-        } else if (answer === "C3") {
-            output3.textContent = "Question 3 Answer: C";
-        } else if (answer === "D3") {
-            output3.textContent = "Question 3 Answer: D";
         };
 
 
@@ -58,10 +46,6 @@ buttons.forEach(function(button){
             output4.textContent = "Question 4 Answer: A";
         } else if (answer === "B4") {
             output4.textContent = "Question 4 Answer: B";
-        } else if (answer === "C4") {
-            output4.textContent = "Question 4 Answer: C";
-        } else if (answer === "D4") {
-            output4.textContent = "Question 4 Answer: D";
         };
 
 
@@ -70,21 +54,65 @@ buttons.forEach(function(button){
         let response = button.dataset.answer;
         userAnswers[answers] = response;
         console.log(userAnswers);
+
+        let resultsCounter = 0
+        if ("A1" in userAnswers) {
+            resultsCounter += 1
+        }; 
+        if ("B1" in userAnswers) {
+            resultsCounter += 2
+        };
+        if ("A2" in userAnswers) {
+            resultsCounter += 1
+        }; 
+        if ("B2" in userAnswers) {
+            resultsCounter += 2
+        };
+        if ("A3" in userAnswers) {
+            resultsCounter += 1
+        }; 
+        if ("B3" in userAnswers) {
+            resultsCounter += 2
+        };
+        if ("A4" in userAnswers) {
+            resultsCounter += 1
+        };
+        if ("B4" in userAnswers) {
+            resultsCounter += 2
+        };
+
+        console.log(resultsCounter);
         
     });
 });
 
-for (let key in userAnswers) {
-    if (typeof userAnswers[key] === "string") {
-        let newString = "";
-        for (let char of userAnswers[key]) {
-            if (char < "0" || char > "9") {
-                newString += char;
-            } 
-        }
-        userAnswers[key] = newString
-    }
-}
 
-console.log(userAnswers)
+function displayResults() {
+    let finalButton = document.getElementById('show-result');
+
+    if (finalButton) {
+        finalButton.addEventListener('click', function() {
+            console.log("Button clicked!")
+        })
+    }
+    if (resultsCounter <=4) {
+        let finalOutput = "You're Glacier National Park!";
+        const div = document.getElementById("result-text").innerHTML;
+        div.textContent = finalOutput;
+        return div.textContent;
+    } else if (resultsCounter >= 5 || resultsCounter <= 7) {
+        let finalOutput = "You're Olympic National Park!";
+        const div = document.getElementById("result-text").innerHTML;
+        div.textContent = finalOutput;
+        return div.textContent;
+    } else if (resultsCounter >= 8) {
+        let finalOutput = "You're Badlands National Park!";
+        const div = document.getElementById("result-text").innerHTML;
+        div.textContent = finalOutput;
+        return div.textContent;
+    }
+};
+
+displayResults();
+
 
